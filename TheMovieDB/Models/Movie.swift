@@ -8,8 +8,8 @@
 import Foundation
 
 struct Movie: Codable{
-    let id: Int?
-    let title: String?
+    let id: Int
+    let title: String
     let overview: String?
     let posterPath: String?
     let backdropPath: String?
@@ -22,6 +22,14 @@ struct Movie: Codable{
     let adult: Bool?
     let originalLanguage: String?
     let originalTitle: String?
+    
+    var backdropURL: URL {
+        return URL(string: "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")")!
+    }
+    
+    var posterURL: URL {
+        return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+    }
     
     enum CodingKeys: String, CodingKey {
             

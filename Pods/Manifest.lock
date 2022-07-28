@@ -1,3 +1,40 @@
-PODFILE CHECKSUM: 8294f0930f777ee4f665a7c4a583df7f31999919
+PODS:
+  - Alamofire (5.6.2)
+  - Nuke (9.5.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxNuke (2.0.1):
+    - Nuke (~> 9.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Nuke
+  - RxCocoa
+  - RxNuke
+  - RxSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Nuke
+    - RxCocoa
+    - RxNuke
+    - RxRelay
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Nuke: 6f400a4ea957e09149ec335a3c6acdcc814d89e4
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxNuke: 23175fb4b7cda4e3aa453588d895198ccf88f5ab
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+
+PODFILE CHECKSUM: 64155c9fe4faf7a3dccfc0b2f1547f8335e029fb
 
 COCOAPODS: 1.11.3
