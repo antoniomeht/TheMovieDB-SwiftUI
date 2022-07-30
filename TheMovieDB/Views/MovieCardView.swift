@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovieCard: View {
+struct MovieCardView: View {
     
     var movie: Movie
     @ObservedObject var imageLoader = ImageLoader()
@@ -15,8 +15,6 @@ struct MovieCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4){
             ZStack{
-                Rectangle()
-                    .fill(Color.gray.opacity(0.3))
                 if self.imageLoader.image != nil{
                     Image(uiImage: self.imageLoader.image!)
                         .resizable()
@@ -26,8 +24,13 @@ struct MovieCard: View {
             .cornerRadius(8)
             .shadow(radius: 4)
             
-            Text(movie.title)
+            Text(movie.title ?? "")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .lineLimit(1)
+                
         }
+        .lineLimit(1)
         .onAppear{
             self.imageLoader.loadImage(with: movie.backdropURL)
         }
@@ -37,6 +40,6 @@ struct MovieCard: View {
 
 struct MovieCard_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCard(movie: Movie(id: 0, title: "Prueba titulo", overview: "", posterPath: "", backdropPath: "/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg", genreIds: nil, releaseDate: nil, popularity: nil, voteCount: nil, voteAverage: nil, video: nil, adult: nil, originalLanguage: nil, originalTitle: nil))
+        MovieCardView(movie: Movie(id: 0, title: "Prueba titulo", overview: "", posterPath: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg", backdropPath: "/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg", genreIds: nil, releaseDate: nil, popularity: nil, voteCount: nil, voteAverage: nil, video: nil, adult: nil, originalLanguage: nil, originalTitle: nil))
     }
 }

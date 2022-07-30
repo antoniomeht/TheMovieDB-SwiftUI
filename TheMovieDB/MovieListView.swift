@@ -6,22 +6,62 @@
 //
 
 import SwiftUI
+import RxSwift
 
 struct MovieListView: View {
-    var body: some View {
-        Button("Prueba", action: prueba)
+    
+    @ObservedObject private var popularState = MovieListState()
+    @ObservedObject private var topRatedState = MovieListState()
+    @ObservedObject private var nowPlayingState = MovieListState()
+    @ObservedObject private var upcommingState = MovieListState()
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white, .font : UIFont.boldSystemFont(ofSize: 20)]
     }
     
-    func prueba(){
-        MovieServices().getMovies(from: .popular) { response in
-            print(response)
+    var body: some View {
+        NavigationView{
+            List{
+                getMovieListView(listType: .popular, carouselType: .poster)
+                getMovieListView(listType: .topRated, carouselType: .backdrop)
+                getMovieListView(listType: .nowPlaying, carouselType: .backdrop)
+                getMovieListView(listType: .upcomming, carouselType: .backdrop)
+            }
+            .navigationBarTitle("The Movie Database - SwiftUI")
+            .colorScheme(.dark)
+            
+            
+        }
+        .onAppear{
+            self.popularState.loadMovies(listType: .popular)
+            self.topRatedState.loadMovies(listType: .topRated)
+            self.nowPlayingState.loadMovies(listType: .nowPlaying)
+            self.upcommingState.loadMovies(listType: .upcomming)
         }
     }
-}
+    
+    func getMovieListView(listType: MovieListType, carouselType: CarouselType) -> some View{
+        
+        switch listType {
+        case .nowPlaying:
+            return AnyView(MoviePosterCarouselView(title: listType.rawValue, movies: nowPlayingState.movies ?? []))
+            
+        case .popular:
+            return AnyView(MovieCardCarouselView(title: listType.rawValue, movies: popularState.movies ?? []))
 
-struct MovieListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieListView()
-            .previewDevice("iPhone 11 Pro")
+        case .topRated:
+            return AnyView(MovieCardCarouselView(title: listType.rawValue, movies: topRatedState.movies ?? []))
+
+        case .upcomming:
+            return AnyView(MovieCardCarouselView(title: listType.rawValue, movies: upcommingState.movies ?? []))
+
+        }
+    }
+    
+    struct MovieListView_Previews: PreviewProvider {
+        static var previews: some View {
+            MovieListView()
+                .previewDevice("iPhone 11 Pro")
+        }
     }
 }

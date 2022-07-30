@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Movie: Codable{
-    let id: Int
-    let title: String
+struct Movie: Codable, Identifiable{
+    let id: Int?
+    let title: String?
     let overview: String?
     let posterPath: String?
     let backdropPath: String?
@@ -17,18 +17,20 @@ struct Movie: Codable{
     let releaseDate: String?
     let popularity: Double?
     let voteCount: Int?
-    let voteAverage: Int?
+    let voteAverage: Double?
     let video: Bool?
     let adult: Bool?
     let originalLanguage: String?
     let originalTitle: String?
     
     var backdropURL: URL {
-        return URL(string: "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")")!
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")")!
+        return url
     }
     
     var posterURL: URL {
-        return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+        return url
     }
     
     enum CodingKeys: String, CodingKey {
