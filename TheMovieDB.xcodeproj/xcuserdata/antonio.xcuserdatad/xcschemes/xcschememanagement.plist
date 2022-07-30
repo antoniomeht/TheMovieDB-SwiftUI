@@ -7,7 +7,25 @@
 		<key>TheMovieDB.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>9</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A974858D289106BB00D8FB3F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A974859D289106BC00D8FB3F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A97485A7289106BC00D8FB3F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

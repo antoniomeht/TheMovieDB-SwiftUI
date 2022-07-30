@@ -11,11 +11,7 @@ class ServiceManager{
     
     private static let apiKey = "d14ef3d1c39000f4b702c8c4d5b2a7a4"
     private static let urlSession = URLSession.shared
-    private static let jsonDecoder : JSONDecoder = {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        return jsonDecoder
-    }()
+    private static let jsonDecoder = JSONDecoder()
 
     class func loadURLAndDecode<T: Codable>(url: URL, params: [String: Any]? = nil, completion: @escaping (Result<T, MovieErrorType>) -> ()){
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else{
@@ -64,7 +60,8 @@ class ServiceManager{
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
                 let decodedResponse = try self.jsonDecoder.decode(T.self, from: data)
                 completion(.success(decodedResponse))
-            } catch _{
+            } catch let error{
+                print(String(describing: error))
                 DispatchQueue.main.async {
                     completion(.failure(.decoding))
                 }

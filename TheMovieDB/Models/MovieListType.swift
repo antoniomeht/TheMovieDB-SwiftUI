@@ -9,10 +9,10 @@ import Foundation
 
 enum MovieListType: String{
     
-    case nowPlaying
-    case popular
-    case topRated
-    case upcomming
+    case nowPlaying = "Now playing"
+    case popular = "Popular"
+    case topRated = "Top rated"
+    case upcomming = "Upcomming"
     
     var endpoint: String{
         switch self {
