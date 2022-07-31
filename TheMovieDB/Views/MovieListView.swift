@@ -37,17 +37,16 @@ struct MovieListView: View {
         }
         .colorScheme(.dark)
         .onAppear{
-            self.popularState.loadMovies(listType: .popular)
-            self.topRatedState.loadMovies(listType: .topRated)
-            self.nowPlayingState.loadMovies(listType: .nowPlaying)
-            self.upcommingState.loadMovies(listType: .upcomming)
-            
             if let savedMovies = UserDefaults.standard.object(forKey: "StoredMovies") as? Data,
                 let loadedMovies = try? JSONDecoder().decode([Movie].self, from: savedMovies) {
                 self.savedMovies = loadedMovies
             } else {
                 self.savedMovies = []
             }
+            self.popularState.loadMovies(listType: .popular)
+            self.topRatedState.loadMovies(listType: .topRated)
+            self.nowPlayingState.loadMovies(listType: .nowPlaying)
+            self.upcommingState.loadMovies(listType: .upcomming)
         }
     }
     

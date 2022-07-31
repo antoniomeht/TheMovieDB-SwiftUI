@@ -28,6 +28,7 @@ struct ContentView: View {
                 }
         }
         .colorScheme(.dark)
+        .navigationViewStyle(.stack)
     }
 }
 
