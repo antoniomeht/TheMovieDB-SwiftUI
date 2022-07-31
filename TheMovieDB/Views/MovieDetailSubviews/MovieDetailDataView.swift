@@ -18,7 +18,7 @@ struct MovieDetailDataView: View {
         if let savedMovies = UserDefaults.standard.object(forKey: "StoredMovies") as? Data,
             var loadedMovies = try? JSONDecoder().decode([Movie].self, from: savedMovies) {
             if !loadedMovies.contains(where: { $0.id == movie.id }) {
-                loadedMovies.append(movie)
+                loadedMovies.insert(movie, at: 0)
                 encodeMovies(movies: loadedMovies)
             }
         } else {
@@ -27,7 +27,13 @@ struct MovieDetailDataView: View {
     }
     
     func encodeMovies(movies: [Movie]){
-        if let encoded = try? JSONEncoder().encode(movies) {
+        var moviesToEncode = movies
+        
+        if moviesToEncode.count >= 20{
+            moviesToEncode = Array(moviesToEncode[0..<20])
+        }
+        
+        if let encoded = try? JSONEncoder().encode(moviesToEncode) {
             UserDefaults.standard.set(encoded, forKey: "StoredMovies")
         }
     }

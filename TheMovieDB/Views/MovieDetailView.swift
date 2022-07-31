@@ -20,9 +20,11 @@ struct MovieDetailView: View {
             
         }
         .navigationTitle(movieDetailState.movie?.title ?? "")
-        .colorScheme(.dark)
         .onAppear{
             self.movieDetailState.loadMovieDetail(with: movieId)
         }
+        .colorScheme(.dark)
     }
+    
+    
 }

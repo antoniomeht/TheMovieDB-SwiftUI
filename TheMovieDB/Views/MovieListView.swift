@@ -34,10 +34,8 @@ struct MovieListView: View {
                 getMovieListView(listType: .lastViewed, carouselType: .backdrop)
             }
             .navigationBarTitle("The Movie Database - SwiftUI")
-            .colorScheme(.dark)
-            
-            
         }
+        .colorScheme(.dark)
         .onAppear{
             self.popularState.loadMovies(listType: .popular)
             self.topRatedState.loadMovies(listType: .topRated)
