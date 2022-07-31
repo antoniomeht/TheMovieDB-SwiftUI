@@ -22,14 +22,16 @@ struct MoviePosterCarouselView: View {
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(alignment: .top, spacing: 8){
                     ForEach(self.movies){ movie in
-                        MoviePosterView(movie: movie)
-                            .padding(.leading, movie.id == self.movies.first?.id ? 16 : 0)
-                            .padding(.trailing, movie.id == self.movies.last?.id ? 16 : 0)
+                        NavigationLink(destination: MovieDetailView(movieId: movie.id ?? 0)){
+                            MoviePosterView(movie: movie)
+                                .frame(width: 200, height: 300, alignment: .center)
+                                .padding(.leading, movie.id == self.movies.first?.id ? 16 : 0)
+                                .padding(.trailing, movie.id == self.movies.last?.id ? 16 : 0)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }
-            .frame(height: 300)
-            
         }
     }
 }

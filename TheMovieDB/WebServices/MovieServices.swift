@@ -11,7 +11,7 @@ protocol MovieServiceProtocol{
     
     func getMovies(from endpoint: MovieListType, completion: @escaping (Result<MovieList, MovieErrorType>) -> ())
     func getMovie(id: Int, completion: @escaping (Result<Movie, MovieErrorType>) -> ())
-    func searchMovie(query: String, completion: @escaping (Result<[Movie], MovieErrorType>) -> ())
+    func searchMovie(query: String, completion: @escaping (Result<MovieList, MovieErrorType>) -> ())
     
 }
 
@@ -42,14 +42,14 @@ class MovieServices: MovieServiceProtocol{
         ServiceManager.loadURLAndDecode(url: url, params: params, completion: completion)
     }
     
-    func searchMovie(query: String, completion: @escaping (Result<[Movie], MovieErrorType>) -> ()) {
+    func searchMovie(query: String, completion: @escaping (Result<MovieList, MovieErrorType>) -> ()) {
         guard let url = URL(string: "\(PATH)/search/movie/") else{
             completion(.failure(.invalidEndpoint))
             return
         }
         
         let params: [String: Any] = [
-            "language": "es-ES",
+            "language": "en-US",
             "query": query
         ]
         
