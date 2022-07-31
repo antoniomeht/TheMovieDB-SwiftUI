@@ -13,7 +13,10 @@ struct Movie: Codable, Identifiable{
     let overview: String?
     let posterPath: String?
     let backdropPath: String?
-    let genreIds: [Int]?
+    
+    let genres: [MovieGenre]?
+//    let credits: MovieCredits?
+    
     let releaseDate: String?
     let popularity: Double?
     let voteCount: Int?
@@ -22,6 +25,9 @@ struct Movie: Codable, Identifiable{
     let adult: Bool?
     let originalLanguage: String?
     let originalTitle: String?
+    let runtime: Int?
+    
+    let production: [ProductionCompanies]?
     
     var backdropURL: URL {
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")")!
@@ -33,6 +39,30 @@ struct Movie: Codable, Identifiable{
         return url
     }
     
+    var mainGenre: String{
+        return genres?.first?.name ?? "Unknown genre"
+    }
+    
+    var yearString: String{
+        return MovieDateFormatter().movieDateString(from: releaseDate ?? "")
+    }
+    
+    var movieDuration: String{
+        return MovieDateFormatter().durationString(time: self.runtime)
+    }
+    
+//    var getDirectors: [MovieCreditCrew]?{
+//        return credits?.crew.filter({ $0.job?.lowercased() == "director"})
+//    }
+//
+//    var getProducers: [MovieCreditCrew]?{
+//        return credits?.crew.filter({ $0.job?.lowercased() == "producer"})
+//    }
+//
+//    var getWriters: [MovieCreditCrew]?{
+//        return credits?.crew.filter({ $0.job?.lowercased() == "story"})
+//    }
+    
     enum CodingKeys: String, CodingKey {
             
         case id
@@ -40,7 +70,8 @@ struct Movie: Codable, Identifiable{
         case overview
         case posterPath = "poster_path"
         case backdropPath = "backdrop_path"
-        case genreIds = "genre_ids"
+        case genres
+//        case credits
         case releaseDate = "release_date"
         case popularity
         case voteCount = "vote_count"
@@ -49,6 +80,8 @@ struct Movie: Codable, Identifiable{
         case adult
         case originalLanguage = "original_laguage"
         case originalTitle = "original_title"
+        case runtime
+        case production = "production_companies"
         
     }
     

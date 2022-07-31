@@ -13,6 +13,7 @@ enum MovieListType: String{
     case popular = "Popular"
     case topRated = "Top rated"
     case upcomming = "Upcomming"
+    case lastViewed = "Last viewed"
     
     var endpoint: String{
         switch self {
@@ -24,6 +25,8 @@ enum MovieListType: String{
             return "top_rated"
         case .upcomming:
             return "upcoming"
+        case .lastViewed:
+            return ""
         }
     }
     
