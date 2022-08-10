@@ -53,13 +53,16 @@ class MovieSearchState: ObservableObject{
                 return
             }
             
-            self.isLoading = false
-            switch result{
-            case .success(let movies):
-                self.movies = movies.results
-            case .failure(let error):
-                debugPrint(error.localizedDescription)
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result{
+                case .success(let movies):
+                    self.movies = movies.results
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
+                }
             }
+            
         }
     }
     

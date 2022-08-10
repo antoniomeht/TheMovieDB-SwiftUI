@@ -39,9 +39,3 @@ struct MovieSearchView: View {
         }
     }
 }
-
-struct MovieSearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieSearchView()
-    }
-}

@@ -57,7 +57,6 @@ class ServiceManager{
             }
             
             do{
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
                 let decodedResponse = try self.jsonDecoder.decode(T.self, from: data)
                 completion(.success(decodedResponse))
             } catch let error{

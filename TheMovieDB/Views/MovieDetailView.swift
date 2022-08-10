@@ -26,5 +26,4 @@ struct MovieDetailView: View {
         .colorScheme(.dark)
     }
     
-    
 }

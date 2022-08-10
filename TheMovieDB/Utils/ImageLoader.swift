@@ -27,18 +27,12 @@ class ImageLoader: ObservableObject {
             self.image = imageFromCache
             return
         }
-        
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
+
             ImagePipeline.shared.rx.loadImage(with: url)
                 .subscribe(onSuccess: {
                     self.image = $0.image
                     self.imageCache.setObject($0.image, forKey: urlString as AnyObject)
                 })
                 .disposed(by: self.disposeBag)
-        }
     }
 }

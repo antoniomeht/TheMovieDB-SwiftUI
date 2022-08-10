@@ -74,9 +74,3 @@ struct MovieDetailDataView: View {
         }
     }
 }
-
-struct MovieDetailDataView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieDetailDataView(movie: Movie(id: 0, title: "Titulo", overview: "Descripcion", posterPath: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg", backdropPath: "/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg", genres: nil, releaseDate: nil, popularity: nil, voteCount: nil, voteAverage: nil, video: nil, adult: nil, originalLanguage: nil, originalTitle: nil, runtime: 120, production: nil))
-    }
-}

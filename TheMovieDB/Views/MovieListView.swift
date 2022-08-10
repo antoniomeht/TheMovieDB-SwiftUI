@@ -76,10 +76,4 @@ struct MovieListView: View {
         
     }
     
-    struct MovieListView_Previews: PreviewProvider {
-        static var previews: some View {
-            MovieListView()
-                .previewDevice("iPhone 11 Pro")
-        }
-    }
 }
